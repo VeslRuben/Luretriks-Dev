@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="data_extractor" type="logger.py" name="logger" output="screen"/>
+</launch>

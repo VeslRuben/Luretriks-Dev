@@ -1,0 +1,14 @@
+<launch>
+    <!-- rplidar -->
+    <include file="$(find rplidar_ros)/launch/rplidar_a3.launch">
+        <arg name="serial_port" value="/dev/rplidar"/>
+    </include>
+
+    <!-- imu_link -->
+    <include file="$(find imu_link)/launch/imu_link.launch">
+        <arg name="serial_port" value="/dev/arduino"/>
+    </include>
+
+    <!-- complementary filter -->
+    <node pkg="imu_complementary_filter" type="complementary_filter_node" name="complementary_filter" output="screen"/>
+</launch>

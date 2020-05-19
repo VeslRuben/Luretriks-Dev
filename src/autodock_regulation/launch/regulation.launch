@@ -1,0 +1,7 @@
+<launch>
+    <arg name="pose_topic" default="slam_out_pose"/>
+
+    <param name="pose_topic" value="$(arg pose_topic)"/>
+    <node pkg="autodock_regulation" type="kalman.py" name="kalman" output="screen"/>
+    <node pkg="autodock_regulation" type="pid.py" name="pid" output="screen"/>
+</launch>

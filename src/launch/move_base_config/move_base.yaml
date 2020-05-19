@@ -1,0 +1,11 @@
+controller_frequency: 10
+
+recovery_behaviors: [   {
+                          name: conservative_reset,
+                          type: clear_costmap_recovery/ClearCostmapRecovery
+                        }, {
+                          name: aggressive_reset,
+                          type: clear_costmap_recovery/ClearCostmapRecovery
+
+                        }]
+claring_rotation_allowed: false

@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find launch)/launch/sensors.launch"/>
+    <include file="$(find roboclaw)/launch/roboclaw_manual.launch" />
+</launch>

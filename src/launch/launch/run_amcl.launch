@@ -1,0 +1,13 @@
+<launch>
+    <include file="$(find amcl)/examples/amcl_omni.launch"/>
+    <include file="$(find laser_scan_matcher)/launch/laser_scan_matcher.launch"/>
+
+    <!-- Change filename in args to change the map loaded -->
+    <node pkg="map_server" type="map_server" name="map_server" args="$(find launch)/maps/havn.yaml"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="base_to_laser_broadcaster"
+          args="0.15 0 0.16 0 0 0 base_link laser 100"/>
+
+    <include file="$(find launch)/launch/move_base.launch"/>
+    
+</launch>

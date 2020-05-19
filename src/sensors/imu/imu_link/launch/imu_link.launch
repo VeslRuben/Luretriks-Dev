@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+
+    <arg name="sensor_link_name" default="sensor_link"/>
+    <arg name="serial_port" default="arduino"/>
+    <arg name="serial_baud_rate" default="115200"/>
+
+    <arg name="filter_name" default="sensor_filter"/>
+    <!--Default filter-file has coefficients for filter for different sensors-->
+    <arg name="filter_file" default="$(find imu_link)/config_files/default_filter.json"/>
+    <!-- Saved calibration data in file under -->
+    <arg name="config_file_filter" default="$(find imu_link)/config_files/calibration_data.json"/>
+    <arg name="reset_file_filter" default="$(find imu_link)/config_files/reset_file.json"/>
+
+    <param name="serial_port" value="$(arg serial_port)"/>
+    <param name="serial_baud_rate" value="$(arg serial_baud_rate)"/>
+    <node pkg="imu_link" type="sensor_link.py" name="$(arg sensor_link_name)" output="screen"/>
+
+
+    <param name="config_file_filter" value="$(arg config_file_filter)"/>
+    <param name="filter_file" value="$(arg filter_file)"/>
+    <param name="reset_file_filter" value="$(arg reset_file_filter)"/>
+    <node pkg="imu_link" type="filter.py" name="$(arg filter_name)" output="screen"/>
+
+
+</launch>

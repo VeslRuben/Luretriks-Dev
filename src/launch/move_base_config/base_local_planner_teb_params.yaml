@@ -1,0 +1,65 @@
+TebLocalPlannerROS:
+
+  #Misc Params
+  odom_topic: odom
+  map_frame: map
+
+  # Speed params
+  acc_lim_x: 0.04
+  acc_lim_theta: 0.05
+  max_vel_x: 0.2
+  max_vel_x_backwards: 0.2
+  max_vel_theta: 0.2
+  max_vel_y: 0.2
+  acc_lim_y: 0.04
+
+  # Footprint
+  footprint_model:
+    type: "polygon"
+    vertices: [[0.5, -0.35], [-0.5, -0.35], [-0.5, 0.35], [0.5, 0.35]]
+
+  # Goal Tolerances
+  xy_goal_tolerance: 0.2
+  yaw_goal_tolerance: 0.17
+
+  # Trajectory Config
+  min_samples: 3
+  global_plan_overwrite_orientation: true
+  max_global_plan_lookahead_dist: 3.0
+  dt_ref: 0.3
+  global_plan_viapoint_sep: 1
+
+  # Obstacle Params
+  min_obstacle_dist: 0.5
+  include_costmap_obstacles: true
+  costmap_obstacles_behind_robot_dist: 1.0
+  inflation_dist: 0.6
+  obstacle_association_force_inclusion_factor: 1.5
+  obstacle_association_cutoff_factor: 5
+  obstacle_poses_affected: 30
+
+  # Optimization Params
+  weight_max_vel_x: 2.0
+  weight_max_vel_theta: 1.0
+  weight_acc_lim_x: 1.0
+  weight_acc_lim_theta: 1.0
+
+  penalty_epsilon: 0.01
+
+  weight_kinematics_nh: 5.0 # Tror vi må senke denne her for å gå sidelengs
+  weight_kinematics_forward_drive: 1.0 # Her kan det justeres ned om man vil den skal kjøre bakover. 1000 skal stoppe bak
+
+  weight_obstacle: 50.0
+  weight_viapoint: 0.01
+  weight_inflation: 0.1 # Skal være liten
+  weight_adapt_factor: 2.0 # Ganges med andre faktorer i loops
+
+  # Parallell Planning
+  enable_homotopy_class_planning: true
+  enable_multithreading: true
+
+  max_number_classes: 4 # Antall paths som vurderes
+  selection_cost_hysteresis: 1.0 # Hvor mye bedre må en path være for å ta den
+
+  viapoints_all_candidates: true
+

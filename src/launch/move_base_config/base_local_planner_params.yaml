@@ -1,0 +1,38 @@
+TrajectoryPlannerROS:
+  max_vel_x: 0.2
+  min_vel_x: -0.2
+  escape_vel: -0.2
+  max_vel_theta: 0.2
+  min_vel_theta: -0.2
+  min_in_place_vel_theta: 0.05
+
+  y_vels: [-0.2, -0.05, 0.05, 0.2]
+
+  acc_lim_theta: 0.05
+  acc_lim_x: 0.04
+  acc_lim_y: 0.04
+
+  yaw_goal_tolerance: 0.17
+  xy_goal_tolerance: 0.2
+  latch_xy_goal_tolerance: false
+
+  holonomic_robot: true
+
+  meter_scoring: true
+  sim_time: 6
+  sim_granularity: 0.5
+  angular_sim_granularity: 0.1
+  vx_samples: 5
+  vtheta_samples: 25
+  heading_scoring: false
+  heading_timestep_: 6
+  pdist_scale: 0.6
+  gdist_scale: 0.8
+  occddist_scale: 0.01
+
+  global_frame_id: map
+
+  dwa: false
+
+  oscillation_reset_dist: 0.15
+  #heading_lookahead: 0.325

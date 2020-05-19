@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="name" default="tf_odom_to_base"/>
+    <arg name="imu_topic" default="imu/data"/>
+    <arg name="reset_file_odom" default="$(find tf_odom_to_base)/config_files/reset_file.json"/>
+    <arg name="config_file_odom" default="$(find tf_odom_to_base)/config_files/calibration_data.json"/>
+
+    <param name="name" value="$(arg name)"/>
+    <param name="imu_topic" value="$(arg imu_topic)"/>
+    <param name="reset_file_odom" value="$(arg reset_file_odom)" />
+    <param name="config_file_odom" value="$(arg config_file_odom)" />
+    <node name="$(arg name)" pkg="tf_odom_to_base" type="tf_odom_to_base_2.py" output="screen"/>
+
+</launch>

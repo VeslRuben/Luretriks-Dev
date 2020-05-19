@@ -1,0 +1,12 @@
+<launch>
+    <include file="$(find joy)/launch/xboxjoy.launch"/>
+    <node pkg="roboclaw" type="safety_publisher.py" name="safty_publisher" output="screen"/>
+    <node pkg="roboclaw" type="joy_to_vel.py" name="joy_to_vel" output="screen"/>
+    <include file="$(find launch)/launch/rviz.launch"/>
+
+    <!--Comment in/out whether you're using AMCL (pose_stamped) or SLAM (slam_out_pose) for feedback to Kalman Filter-->
+    <include file="$(find autodock_regulation)/launch/regulation.launch">
+        <arg name="pose_topic" value="pose_stamped"/>
+        <!--arg name="pose_topic" value="slam_out_pose"/-->
+    </include>
+</launch>

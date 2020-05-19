@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="autodock_test_pkg" type="test_publisher.py" name="test_publisher" />
+    <node pkg="autodock_test_pkg" type="test_subscriber.py" name="test_subscriber" />
+</launch>

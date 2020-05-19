@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="roboclaw" type="roboclaw.py" name="roboclaw" output="screen"/>
+    <node pkg="roboclaw" type="safety_listener.py" name="safety_watcher" output="screen"/>
+</launch>

@@ -1,0 +1,13 @@
+<launch>
+    <!-- Deprecated file -->
+    <include file="$(find tf_odom_to_base)/launch/test_launch.launch"/>
+
+    <include file="$(find hector_slam_launch)/launch/tutorial.launch"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="base_to_laser_broadcaster"
+          args="0.15 0 0.16 0 0 0 base_link laser 100"/>
+
+    <include file="move_base.launch"/>
+
+    <include file="$(find launch)/launch/rviz.launch"/>
+</launch>

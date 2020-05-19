@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="name" default="Calibrate"/>
+    <arg name="sampels" default="1000"/>
+    <arg name="filter_name" default="sensor_filter"/>
+    <arg name="odom_to_base_name" default="odom_to_base"/>
+    <arg name="imu_raw_topic" default="imu/sensor_raw"/>
+    <arg name="mag_raw_topic" default="mag/sensor_raw"/>
+    <arg name="imu_filtered_topic" default="imu/data_raw"/>
+    <arg name="mag_filtered_topic" default="imu/mag"/>
+    <arg name="comp_filter_topic" default="imu/data"/>
+
+     <!-- Calibrate node -->
+    <param name="sampels" value="$(arg sampels)"/>
+    <param name="odom_to_base_node_name" value="$(arg odom_to_base_name)"/>
+    <param name="filter_node_name" value="$(arg filter_name)"/>
+    <param name="imu_raw_topic" value="$(arg imu_raw_topic)"/>
+    <param name="mag_raw_topic" value="$(arg mag_raw_topic)"/>
+    <param name="imu_filtered_topic" value="$(arg imu_filtered_topic)"/>
+    <param name="mag_filtered_topic" value="$(arg mag_filtered_topic)"/>
+    <param name="comp_filter_topic" value="$(arg comp_filter_topic)"/>
+    <node pkg="calibrate" type="calibrate2.py" name="$(arg name)" output="screen"/>
+
+    <!-- complemetery filter -->
+    <node pkg="imu_complementary_filter" type="complementary_filter_node" name="complementary_filter" output="screen"/>
+
+    <!-- imu_link -->
+    <include file="$(find imu_link)/launch/imu_link.launch">
+        <arg name="filter_name" value="$(arg filter_name)"/>
+    </include>
+
+    <include file="$(find tf_odom_to_base)/launch/test_launch.launch">
+        <arg name="name" value="$(arg odom_to_base_name)"/>
+        <arg name="imu_topic" value="$(arg comp_filter_topic)"/>
+    </include>
+
+</launch>

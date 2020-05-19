@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="gui" type="map_to_gui.py" name="map_to_gui" output="screen"/>
+    <node pkg="gui" type="UdpLaserPub.py" name="lase_pub" output="screen"/>
+    <node pkg="gui" type="tcp.py" name="tcp" output="screen"/>
+    <node pkg="gui" type="vessel_udp.py" name="vessel_udp" output="screen"/>
+</launch>

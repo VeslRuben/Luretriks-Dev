@@ -1,0 +1,16 @@
+global_costmap:
+  update_frequency: 5.0
+  static_map: true
+  transform_tolerance: 0.9
+
+  plugins:
+    - {name: static_layer, type: "costmap_2d::StaticLayer"}
+    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
+  static_layer:
+    map_topic: /map
+    subscribe_to_updates: true
+
+  inflation_layer:
+    inflation_radius: 0.7
+    cost_scaling_factor: 1.0
